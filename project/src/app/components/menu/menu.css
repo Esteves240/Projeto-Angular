@@ -1,0 +1,41 @@
+.sidemenu {
+  width: 210px;
+  height: 100vh;
+  min-height: 100vh;
+  display: block;
+  float: left;
+  background-color: navajowhite;
+  padding: 10px 0px;
+  box-shadow: 4px 0px 10px 4px #0a0a0a30;
+  margin-right: 16px;
+}
+
+.sidemenu ul {
+  padding: 0;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+li {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 24px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  transition: 0.3s linear all;
+}
+
+li:hover {
+  background-color: #e6e6e6;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
