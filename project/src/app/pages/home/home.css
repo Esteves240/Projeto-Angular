@@ -1,0 +1,42 @@
+.card-info {
+  background: #fafafa;
+  padding: 14px 18px 0px 18px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 3px 1px #0a0a0a20;
+}
+
+.titulo {
+  font-size: 26px;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  color: navy;
+}
+
+.subtitulo {
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  padding: 26px 0px 14px 0px;
+}
+
+.texto-card {
+  font-size: 16px;
+  font-weight: 500;
+  color: #888;
+  margin-bottom: 18px;
+}
+
+.numero-card {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0a0a0a;
+  margin-bottom: 16px;
+}
+
+.destaque-card {
+  font-size: 12px;
+  font-weight: 500;
+  color: navy;
+  margin-bottom: 0;
+}
