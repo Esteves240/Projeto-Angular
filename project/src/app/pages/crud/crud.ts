@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { Album } from '../../interfaces/album.interface';
 import { Albums } from '../../core/services/album';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ModalView } from './modal-view/modal-view';
+import { ModalForm } from './modal-form/modal-form';
 
 @Component({
   selector: 'app-crud',
@@ -36,7 +39,10 @@ export class Crud implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private albumsService: Albums) {}
+  constructor(
+    private albumsService: Albums,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit() {
     this.dataSource.data = this.albumsService.getAll();
@@ -60,5 +66,27 @@ export class Crud implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  //logicas do modal
+  openModalView(album: Album) {
+    this.dialog.open(ModalView, {
+      width: '700px',
+      height: '330px',
+      data: album,
+    });
+  }
+
+  openModalAdd() {
+    this.dialog
+      .open(ModalForm, {
+        width: '700px',
+        height: '400px',
+      })
+      //refresh da tabela quando fechar o modal
+      .afterClosed()
+      .subscribe(() => {
+        this.getAlbums();
+      });
   }
 }

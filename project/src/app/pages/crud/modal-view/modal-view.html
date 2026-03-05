@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
+
+  <h1 class="titulo">Detalhes:</h1>
+
+  <div class="row mt-3">
+    <div class="col-6">
+      <h4 class="titulo-informacao">Título</h4>
+      <p class="informacao">{{ albumData.title }}</p>
+    </div>
+    <div class="col-6">
+      <h4 class="titulo-informacao">Banda</h4>
+      <p class="informacao">{{ albumData.band }}</p>
+    </div>
+    <div class="col-6">
+      <h4 class="titulo-informacao">Género</h4>
+      <p class="informacao">{{ albumData.genre }}</p>
+    </div>
+    <div class="col-6">
+      <h4 class="titulo-informacao">Estado</h4>
+      <p class="informacao">
+        @if (albumData.isListened) {
+          <p class="informacao">Ouvido</p>
+        } @else {
+          <p class="informacao">Não ouvido</p>
+        }
+      </p>
+    </div>
+    <!-- botar o resto -->
+  </div>
+</div>
