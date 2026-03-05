@@ -4,10 +4,20 @@ import { RouterOutlet } from '@angular/router';
 //Angular Material
 import { MatIconModule } from '@angular/material/icon'; //o minino não gosta deste
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Button } from './components/button/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatIconModule, MatProgressSpinnerModule],
+  imports: [
+    RouterOutlet,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    Button,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
