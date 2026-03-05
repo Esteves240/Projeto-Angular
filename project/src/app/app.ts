@@ -7,6 +7,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Button } from './components/button/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +20,9 @@ import { MatInputModule } from '@angular/material/input';
     Button,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
