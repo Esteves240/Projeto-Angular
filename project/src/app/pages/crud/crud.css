@@ -5,3 +5,38 @@
   margin: 0 !important;
   color: navy;
 }
+
+/* TABELA */
+.no-data {
+  padding: 8px 14px;
+  font-weight: 400;
+  font-size: 14px;
+  color: navy;
+}
+
+tr {
+  height: 40px;
+}
+
+.th-table {
+  font-size: 12px;
+  font-weight: 400;
+  color: #5a5a5a;
+}
+
+.td-table {
+  font-size: 12px;
+  font-weight: 400;
+  color: #767676;
+}
+
+.icon-tabela {
+  color: #767676;
+  margin-right: 10px;
+  transition: 0.3s linear all;
+}
+
+.icon-tabela:hover {
+  cursor: pointer;
+  color: navy;
+}
