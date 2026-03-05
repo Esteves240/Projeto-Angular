@@ -15,6 +15,55 @@
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar por banda" #input />
       </mat-form-field>
+
+      <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSort>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td class="td-table" mat-cell *matCellDef="let album">{{ album.id }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="title">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+          <td class="td-table" mat-cell *matCellDef="let album">{{ album.title }}%</td>
+        </ng-container>
+
+        <!-- Band Column -->
+        <ng-container matColumnDef="band">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Banda</th>
+          <td class="td-table" mat-cell *matCellDef="let album">{{ album.band }}</td>
+        </ng-container>
+
+        <!-- Genre Column -->
+        <ng-container matColumnDef="genre">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Genero</th>
+          <td class="td-table" mat-cell *matCellDef="let album">{{ album.genre }}</td>
+        </ng-container>
+
+        <!-- Icons Column -->
+        <ng-container matColumnDef="action">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td class="td-table" mat-cell *matCellDef="let album">
+            <mat-icon class="icon-tabela">visibility</mat-icon>
+            <mat-icon class="icon-tabela">edit</mat-icon>
+            <mat-icon class="icon-tabela">delete</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let album; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">Nenhum album encontrado.. "{{ input.value }}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Selecione Albuns por página"
+      ></mat-paginator>
     </div>
   </div>
 </div>
