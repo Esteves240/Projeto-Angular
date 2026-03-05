@@ -14,7 +14,7 @@ export class Albums {
     band: 'My CHemical Romance',
     genre: 'rock',
     year: 2006,
-    state: 'listened',
+    isListened: true,
     classification: 5,
     dateAdded: new Date(),
   };

@@ -7,6 +7,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { Album } from '../../interfaces/album.interface';
+import { Albums } from '../../core/services/album';
 
 @Component({
   selector: 'app-crud',
@@ -25,14 +27,28 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
   styleUrl: './crud.css',
 })
 export class Crud implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'band', 'genre', 'action'];
+  displayedColumns: string[] = ['id', 'title', 'band', 'isListened', 'action'];
 
-  dataSource = new MatTableDataSource<any>([]);
+  dataSource = new MatTableDataSource<Album>([]);
+
+  listAlbums: Album[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  constructor(private albumsService: Albums) {}
+
   ngOnInit() {
+    this.dataSource.data = this.albumsService.getAll();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  //not sure
+  getAlbums() {
     const albums = JSON.parse(localStorage.getItem('albums') || '[]');
     this.dataSource.data = albums;
   }

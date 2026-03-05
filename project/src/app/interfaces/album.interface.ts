@@ -21,7 +21,7 @@ export interface Album {
     | 'indie'
     | 'other';
   year: number;
-  state: 'not listened' | 'listened';
+  isListened: boolean;
   classification?: 1 | 2 | 3 | 4 | 5;
   cover?: string;
   notes?: string;
