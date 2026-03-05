@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Menu } from '../../components/menu/menu';
 import { Button } from '../../components/button/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,10 +24,15 @@ import { MatSortModule } from '@angular/material/sort';
   templateUrl: './crud.html',
   styleUrl: './crud.css',
 })
-export class Crud {
+export class Crud implements OnInit {
   displayedColumns: string[] = ['id', 'title', 'band', 'genre', 'action'];
 
   dataSource = new MatTableDataSource<any>([]);
+
+  ngOnInit() {
+    const albums = JSON.parse(localStorage.getItem('albums') || '[]');
+    this.dataSource.data = albums;
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
