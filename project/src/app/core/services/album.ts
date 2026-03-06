@@ -35,6 +35,10 @@ export class Albums {
 
   // CREATE
   add(album: Album): void {
+    album.id = this.albums.length > 0 ? Math.max(...this.albums.map((a) => a.id)) + 1 : 1;
+
+    album.dateAdded = new Date();
+
     this.albums.push(album);
     this.saveToStorage();
   }
