@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
+
+  <h1 class="titulo">Adicione um Album:</h1>
+
+  <form class="row" [formGroup]="formAlbum">
+    <!-- Título -->
+    <div class="col-12 col-md-6 mb-2">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title" placeholder="Ex: Dark Side of the Moon" />
+        @if (formAlbum.get('title')?.hasError('required') && formAlbum.get('title')?.touched) {
+          <mat-error>Título é obrigatório</mat-error>
+        }
+        @if (formAlbum.get('title')?.hasError('minlength')) {
+          <mat-error>Mínimo 2 caracteres</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 mb-2">
+      <label for="band" class="form-label">Banda</label>
+      <input type="text" class="form-control" id="band" formControlName="band" />
+    </div>
+    <!-- GENERO -->
+    <div class="col-12 col-md-6 mb-2">
+      <mat-form-field class="w-100">
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="genre">
+          @for (genre of genero; track genre.id) {
+            <mat-option [value]="genre.name">{{ genre.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-md-6 mb-2">
+      <mat-form-field class="example-full-width w-100">
+        <mat-label>Ano</mat-label>
+        <input type="number" matInput formControlName="year" placeholder="Ex. 2020" />
+        @if (formAlbum.get('year')?.invalid) {
+          <mat-error>Please enter a valid year</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="col-12">
+      <button class="botao-primario float-end" [disabled]="!formAlbum.valid">Guardar</button>
+    </div>
+  </form>
+</div>

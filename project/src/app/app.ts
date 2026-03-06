@@ -10,6 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +26,10 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',

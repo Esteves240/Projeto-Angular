@@ -7,6 +7,11 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { Album } from '../../interfaces/album.interface';
+import { Albums } from '../../core/services/album';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ModalView } from './modal-view/modal-view';
+import { ModalForm } from './modal-form/modal-form';
 
 @Component({
   selector: 'app-crud',
@@ -25,14 +30,31 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
   styleUrl: './crud.css',
 })
 export class Crud implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'band', 'genre', 'action'];
+  displayedColumns: string[] = ['id', 'title', 'band', 'isListened', 'action'];
 
-  dataSource = new MatTableDataSource<any>([]);
+  dataSource = new MatTableDataSource<Album>([]);
+
+  listAlbums: Album[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  constructor(
+    private albumsService: Albums,
+    public dialog: MatDialog,
+  ) {}
+
   ngOnInit() {
+    this.dataSource.data = this.albumsService.getAll();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  //not sure
+  getAlbums() {
     const albums = JSON.parse(localStorage.getItem('albums') || '[]');
     this.dataSource.data = albums;
   }
@@ -44,5 +66,27 @@ export class Crud implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  //logicas do modal
+  openModalView(album: Album) {
+    this.dialog.open(ModalView, {
+      width: '700px',
+      height: '330px',
+      data: album,
+    });
+  }
+
+  openModalAdd() {
+    this.dialog
+      .open(ModalForm, {
+        width: '700px',
+        height: '400px',
+      })
+      //refresh da tabela quando fechar o modal
+      .afterClosed()
+      .subscribe(() => {
+        this.getAlbums();
+      });
   }
 }

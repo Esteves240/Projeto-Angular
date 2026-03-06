@@ -9,7 +9,7 @@
 
   <div class="row mt-2">
     <div class="col-12">
-      <app-button class="float-end" textButtom="+ adicionar"></app-button>
+      <app-button class="float-end" textButtom="+ adicionar" (click)="openModalAdd()"></app-button>
 
       <mat-form-field>
         <mat-label>Filter</mat-label>
@@ -35,17 +35,23 @@
           <td class="td-table" mat-cell *matCellDef="let album">{{ album.band }}</td>
         </ng-container>
 
-        <!-- Genre Column -->
-        <ng-container matColumnDef="genre">
-          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Genero</th>
-          <td class="td-table" mat-cell *matCellDef="let album">{{ album.genre }}</td>
+        <!-- isListened Column -->
+        <ng-container matColumnDef="isListened">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+          <td class="td-table" mat-cell *matCellDef="let album">
+            @if (album.isListened) {
+              <mat-icon class="c-primary">check</mat-icon>
+            } @else {
+              <mat-icon class="c-error">remove</mat-icon>
+            }
+          </td>
         </ng-container>
 
         <!-- Icons Column -->
         <ng-container matColumnDef="action">
           <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header></th>
           <td class="td-table" mat-cell *matCellDef="let album">
-            <mat-icon class="icon-tabela">visibility</mat-icon>
+            <mat-icon class="icon-tabela" (click)="openModalView(album)">visibility</mat-icon>
             <mat-icon class="icon-tabela">edit</mat-icon>
             <mat-icon class="icon-tabela">delete</mat-icon>
           </td>
@@ -61,6 +67,7 @@
       </table>
 
       <mat-paginator
+        class="shadow-sm"
         [pageSizeOptions]="[5, 10, 25, 100]"
         aria-label="Selecione Albuns por página"
       ></mat-paginator>
