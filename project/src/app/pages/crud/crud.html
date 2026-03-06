@@ -52,7 +52,7 @@
           <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header></th>
           <td class="td-table" mat-cell *matCellDef="let album">
             <mat-icon class="icon-tabela" (click)="openModalView(album)">visibility</mat-icon>
-            <mat-icon class="icon-tabela">edit</mat-icon>
+            <mat-icon class="icon-tabela" (click)="openModalEdit(album)">edit</mat-icon>
             <mat-icon class="icon-tabela">delete</mat-icon>
           </td>
         </ng-container>

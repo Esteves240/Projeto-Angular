@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MatDialogContent } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogContent, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatFormField, MatLabel, MatError, MatHint } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -55,6 +55,7 @@ export class ModalForm {
     public dialogRef: MatDialogRef<ModalForm>,
     private formBuilder: FormBuilder,
     private albumsService: Albums,
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
   ngOnInit() {
@@ -63,10 +64,20 @@ export class ModalForm {
 
   saveAlbum() {
     const objAlbumForm: Album = this.formAlbum.getRawValue();
-    this.albumsService.add(objAlbumForm);
-
-    window.alert('Álbum adicionado com sucesso:');
-    this.closeModal();
+    if (this.data?.id) {
+      const updatedAlbum: Album = {
+        ...objAlbumForm,
+        id: this.data.id,
+        dateAdded: this.data.dateAdded,
+      };
+      this.albumsService.update(updatedAlbum);
+      window.alert('Álbum editado com sucesso!');
+      this.closeModal();
+    } else {
+      this.albumsService.add(objAlbumForm);
+      window.alert('Álbum adicionado com sucesso:');
+      this.closeModal();
+    }
   }
 
   buildForm() {
@@ -79,6 +90,25 @@ export class ModalForm {
       classification: [''],
       cover: [''],
       notes: [''],
+    });
+
+    //verificar se é para editar ou criar novo
+    if (this.data && this.data.title) {
+      this.fillForm();
+    }
+  }
+
+  //preencher formulário para edição
+  fillForm() {
+    this.formAlbum.patchValue({
+      title: this.data.title,
+      band: this.data.band,
+      genre: this.data.genre,
+      year: this.data.year,
+      isListened: this.data.isListened,
+      classification: this.data.classification,
+      cover: this.data.cover,
+      notes: this.data.notes,
     });
   }
 

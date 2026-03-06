@@ -89,4 +89,18 @@ export class Crud implements OnInit {
         this.getAlbums();
       });
   }
+
+  openModalEdit(album: Album) {
+    this.dialog
+      .open(ModalForm, {
+        width: '700px',
+        height: '400px',
+        data: album,
+      })
+      //refresh da tabela quando fechar o modal
+      .afterClosed()
+      .subscribe(() => {
+        this.getAlbums();
+      });
+  }
 }
