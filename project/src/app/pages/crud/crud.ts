@@ -12,6 +12,7 @@ import { Albums } from '../../core/services/album';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalView } from './modal-view/modal-view';
 import { ModalForm } from './modal-form/modal-form';
+import { response } from 'express';
 
 @Component({
   selector: 'app-crud',
@@ -102,5 +103,14 @@ export class Crud implements OnInit {
       .subscribe(() => {
         this.getAlbums();
       });
+  }
+
+  deleteAlbum(album: Album) {
+    const confirmDelete = confirm(`Apagar o álbum "${album.title}"?`);
+
+    if (confirmDelete) {
+      this.albumsService.delete(album.id);
+      this.getAlbums();
+    }
   }
 }

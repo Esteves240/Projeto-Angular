@@ -53,7 +53,7 @@
           <td class="td-table" mat-cell *matCellDef="let album">
             <mat-icon class="icon-tabela" (click)="openModalView(album)">visibility</mat-icon>
             <mat-icon class="icon-tabela" (click)="openModalEdit(album)">edit</mat-icon>
-            <mat-icon class="icon-tabela">delete</mat-icon>
+            <mat-icon class="icon-tabela" (click)="deleteAlbum(album)">delete</mat-icon>
           </td>
         </ng-container>
 
