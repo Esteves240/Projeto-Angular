@@ -45,7 +45,9 @@
     </div>
 
     <div class="col-12">
-      <button class="botao-primario float-end" [disabled]="!formAlbum.valid">Guardar</button>
+      <button class="botao-primario float-end" [disabled]="!formAlbum.valid" (click)="saveAlbum()">
+        Guardar
+      </button>
     </div>
   </form>
 </div>

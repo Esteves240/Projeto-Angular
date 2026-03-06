@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelect, MatOption } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
+import { Albums } from '../../../core/services/album';
+import { Album } from '../../../interfaces/album.interface';
 
 @Component({
   selector: 'app-modal-form',
@@ -52,10 +54,19 @@ export class ModalForm {
   constructor(
     public dialogRef: MatDialogRef<ModalForm>,
     private formBuilder: FormBuilder,
+    private albumsService: Albums,
   ) {}
 
   ngOnInit() {
     this.buildForm();
+  }
+
+  saveAlbum() {
+    const objAlbumForm: Album = this.formAlbum.getRawValue();
+    this.albumsService.add(objAlbumForm);
+
+    window.alert('Álbum adicionado com sucesso:');
+    this.closeModal();
   }
 
   buildForm() {
