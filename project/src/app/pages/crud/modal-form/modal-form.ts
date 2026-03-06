@@ -50,6 +50,7 @@ export class ModalForm {
   ];
 
   formAlbum!: FormGroup;
+  editAlbum = false;
 
   constructor(
     public dialogRef: MatDialogRef<ModalForm>,
@@ -60,6 +61,9 @@ export class ModalForm {
 
   ngOnInit() {
     this.buildForm();
+    if (this.data && this.data.id) {
+      this.editAlbum = true;
+    }
   }
 
   saveAlbum() {

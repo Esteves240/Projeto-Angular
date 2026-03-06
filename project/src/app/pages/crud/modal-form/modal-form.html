@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
 
-  <h1 class="titulo">Adicione um Album:</h1>
+  <h1 class="titulo" *ngIf="editAlbum">
+    Edite o Álbum <strong>{{ data.title }}</strong>
+  </h1>
+  <h1 class="titulo" *ngIf="!editAlbum">Adicione um Álbum:</h1>
 
   <form class="row" [formGroup]="formAlbum">
     <!-- Título -->
