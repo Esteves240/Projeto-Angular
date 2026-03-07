@@ -40,3 +40,9 @@
   color: navy;
   margin-bottom: 0;
 }
+
+.texto-p {
+  font-size: 14px;
+  font-style: italic;
+  color: #767676;
+}

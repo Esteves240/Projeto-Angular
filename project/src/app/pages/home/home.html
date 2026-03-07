@@ -15,6 +15,8 @@
               recentes convivem lado a lado, celebrando a criatividade e a emoção que só a música
               consegue provocar. Porque no fim, a música não se ouve apenas… sente-se.
             </h3>
+
+            <app-button textButtom="Iniciar" routerLink="/crud"></app-button>
           </div>
           <div class="col-12 col-md-4">
             <img src="../../assets/marching-band.webp" alt="band" />
@@ -69,6 +71,38 @@
                 <p class="destaque-card">Da coleção total</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- ultimo album adicionado -->
+        <div class="col12 mt-4">
+          <div class="card-info">
+            <h3 class="titulo">Último álbum adicionado</h3>
+            <hr class="hr" />
+
+            @if (lastAlbum) {
+              <div class="row">
+                <div class="col-1">
+                  <mat-icon>album</mat-icon>
+                </div>
+
+                <div class="col-3">
+                  <p class="texto-p">{{ lastAlbum.title }}</p>
+                </div>
+
+                <div class="col-3">
+                  <p class="texto-p">{{ lastAlbum.band }}</p>
+                </div>
+
+                <div class="col-3">
+                  <p class="texto-p">
+                    {{ lastAlbum.dateAdded | date: 'dd/MM/yyyy' }}
+                  </p>
+                </div>
+              </div>
+            } @else {
+              <p class="texto-p">Ainda não existem álbuns adicionados.</p>
+            }
           </div>
         </div>
       </div>

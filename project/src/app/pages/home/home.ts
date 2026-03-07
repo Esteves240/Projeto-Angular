@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Menu } from '../../components/menu/menu';
 import { Albums } from '../../core/services/album';
 import { Album } from '../../interfaces/album.interface';
+import { MatIcon } from '@angular/material/icon';
+import { Button } from '../../components/button/button';
+import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [Menu],
+  imports: [Menu, MatIcon, Button, RouterLink, DatePipe],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -17,6 +21,8 @@ export class Home implements OnInit {
   mostGenre = '';
   listenedPercent = 0;
   albumsThisWeek = 0;
+
+  lastAlbum!: Album | null;
 
   constructor(private albumsService: Albums) {}
 
@@ -61,5 +67,17 @@ export class Home implements OnInit {
     const listened = this.albums.filter((a) => a.isListened).length;
 
     this.listenedPercent = this.totalAlbums ? Math.round((listened / this.totalAlbums) * 100) : 0;
+
+    // KPI - último álbum adicionado
+
+    if (this.albums.length > 0) {
+      const sorted = [...this.albums].sort(
+        (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+      );
+
+      this.lastAlbum = sorted[0];
+    } else {
+      this.lastAlbum = null;
+    }
   }
 }
