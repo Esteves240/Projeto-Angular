@@ -16,6 +16,7 @@ export class Home implements OnInit {
   avgRating = 0;
   mostGenre = '';
   listenedPercent = 0;
+  albumsThisWeek = 0;
 
   constructor(private albumsService: Albums) {}
 
@@ -28,6 +29,18 @@ export class Home implements OnInit {
 
     // KPI 1 - total
     this.totalAlbums = this.albums.length;
+
+    // KPI - álbuns adicionados esta semana
+
+    const now = new Date();
+    const weekAgo = new Date();
+
+    weekAgo.setDate(now.getDate() - 7);
+
+    this.albumsThisWeek = this.albums.filter((album) => {
+      const addedDate = new Date(album.dateAdded);
+      return addedDate >= weekAgo;
+    }).length;
 
     // KPI 2 - média das classificações
     const rated = this.albums.filter((a) => a.classification);
