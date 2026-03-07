@@ -15,6 +15,8 @@
               recentes convivem lado a lado, celebrando a criatividade e a emoção que só a música
               consegue provocar. Porque no fim, a música não se ouve apenas… sente-se.
             </h3>
+
+            <app-button textButtom="Iniciar" routerLink="/crud"></app-button>
           </div>
           <div class="col-12 col-md-4">
             <img src="../../assets/marching-band.webp" alt="band" />
@@ -28,17 +30,9 @@
           <div class="card-info">
             <div class="row">
               <div class="col-8">
-                <p class="texto-card">Total de cenas</p>
-                <p class="numero-card">30</p>
-                <p class="destaque-card">+ cenas desde ontem</p>
-              </div>
-              <div class="col-4">
-                <!-- <mat-progress-spinner
-                  class="example-margin mx-auto color-spinner"
-                  mode="determinate"
-                  value="30"
-                ></mat-progress-spinner> -->
-                <p class="info-spinner">30/100</p>
+                <p class="texto-card">Total de Álbuns</p>
+                <p class="numero-card">{{ totalAlbums }}</p>
+                <p class="destaque-card">{{ albumsThisWeek }} álbuns adicionados esta semana</p>
               </div>
             </div>
           </div>
@@ -48,11 +42,67 @@
           <div class="card-info">
             <div class="row">
               <div class="col-8">
-                <p class="texto-card">Mais cenas</p>
-                <p class="numero-card">45</p>
-                <p class="destaque-card">wow, mais cenas</p>
+                <p class="texto-card">Média de Classificação</p>
+                <p class="numero-card">{{ avgRating }}</p>
+                <p class="destaque-card">Avaliação média dos álbuns ouvidos</p>
               </div>
             </div>
+          </div>
+        </div>
+        <!-- 3º card -->
+        <div class="col-6">
+          <div class="card-info">
+            <div class="row">
+              <div class="col-8">
+                <p class="texto-card">Género Favorito</p>
+                <p class="numero-card">{{ mostGenre }}</p>
+                <p class="destaque-card">Mais presente na coleção</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 4º card -->
+        <div class="col-6">
+          <div class="card-info">
+            <div class="row">
+              <div class="col-8">
+                <p class="texto-card">Álbuns Ouvidos</p>
+                <p class="numero-card">{{ listenedPercent }}%</p>
+                <p class="destaque-card">Da coleção total</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ultimo album adicionado -->
+        <div class="col12 mt-4">
+          <div class="card-info">
+            <h3 class="titulo">Último álbum adicionado</h3>
+            <hr class="hr" />
+
+            @if (lastAlbum) {
+              <div class="row">
+                <div class="col-1">
+                  <mat-icon>album</mat-icon>
+                </div>
+
+                <div class="col-3">
+                  <p class="texto-p">{{ lastAlbum.title }}</p>
+                </div>
+
+                <div class="col-3">
+                  <p class="texto-p">{{ lastAlbum.band }}</p>
+                </div>
+
+                <div class="col-3">
+                  <p class="texto-p">
+                    {{ lastAlbum.dateAdded | date: 'dd/MM/yyyy' }}
+                  </p>
+                </div>
+              </div>
+            } @else {
+              <p class="texto-p">Ainda não existem álbuns adicionados.</p>
+            }
           </div>
         </div>
       </div>

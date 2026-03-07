@@ -1,10 +1,83 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Menu } from '../../components/menu/menu';
+import { Albums } from '../../core/services/album';
+import { Album } from '../../interfaces/album.interface';
+import { MatIcon } from '@angular/material/icon';
+import { Button } from '../../components/button/button';
+import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [Menu],
+  imports: [Menu, MatIcon, Button, RouterLink, DatePipe],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {}
+export class Home implements OnInit {
+  albums: Album[] = [];
+
+  totalAlbums = 0;
+  avgRating = 0;
+  mostGenre = '';
+  listenedPercent = 0;
+  albumsThisWeek = 0;
+
+  lastAlbum!: Album | null;
+
+  constructor(private albumsService: Albums) {}
+
+  ngOnInit() {
+    this.loadKpis();
+  }
+
+  loadKpis() {
+    this.albums = this.albumsService.getAll();
+
+    // KPI 1 - total
+    this.totalAlbums = this.albums.length;
+
+    // KPI - álbuns adicionados esta semana
+
+    const now = new Date();
+    const weekAgo = new Date();
+
+    weekAgo.setDate(now.getDate() - 7);
+
+    this.albumsThisWeek = this.albums.filter((album) => {
+      const addedDate = new Date(album.dateAdded);
+      return addedDate >= weekAgo;
+    }).length;
+
+    // KPI 2 - média das classificações
+    const rated = this.albums.filter((a) => a.classification);
+    const sum = rated.reduce((acc, a) => acc + (a.classification || 0), 0);
+
+    this.avgRating = rated.length ? +(sum / rated.length).toFixed(1) : 0;
+
+    // KPI 3 - género mais ouvido
+    const genres: any = {};
+
+    this.albums.forEach((a) => {
+      genres[a.genre] = (genres[a.genre] || 0) + 1;
+    });
+
+    this.mostGenre = Object.keys(genres).reduce((a, b) => (genres[a] > genres[b] ? a : b), '');
+
+    // KPI 4 - percentagem ouvidos
+    const listened = this.albums.filter((a) => a.isListened).length;
+
+    this.listenedPercent = this.totalAlbums ? Math.round((listened / this.totalAlbums) * 100) : 0;
+
+    // KPI - último álbum adicionado
+
+    if (this.albums.length > 0) {
+      const sorted = [...this.albums].sort(
+        (a, b) => new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime(),
+      );
+
+      this.lastAlbum = sorted[0];
+    } else {
+      this.lastAlbum = null;
+    }
+  }
+}

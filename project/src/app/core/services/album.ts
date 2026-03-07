@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Album } from '../../interfaces/album.interface';
 
 @Injectable({
@@ -7,22 +8,15 @@ import { Album } from '../../interfaces/album.interface';
 export class Albums {
   private storageKey = 'albums';
   private albums: Album[] = [];
+  private isBrowser: boolean;
 
-  album: Album = {
-    id: 1,
-    title: 'The Black Parade',
-    band: 'My CHemical Romance',
-    genre: 'rock',
-    year: 2006,
-    isListened: true,
-    classification: 5,
-    dateAdded: new Date(),
-  };
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
 
-  constructor() {
-    this.loadFromStorage();
+    if (this.isBrowser) {
+      this.loadFromStorage();
+    }
   }
-
   // READ ALL
   getAll(): Album[] {
     return this.albums;
@@ -61,10 +55,14 @@ export class Albums {
   //-----------------------------------------------------------
   // LOCAL STORAGE
   private saveToStorage(): void {
+    if (!this.isBrowser) return;
+
     localStorage.setItem(this.storageKey, JSON.stringify(this.albums));
   }
 
   private loadFromStorage(): void {
+    if (!this.isBrowser) return;
+
     const data = localStorage.getItem(this.storageKey);
     this.albums = data ? JSON.parse(data) : [];
   }
