@@ -4,7 +4,7 @@
   min-height: 100vh;
   display: block;
   float: left;
-  background-color: navajowhite;
+  background-color: navy;
   padding: 10px 0px;
   box-shadow: 4px 0px 10px 4px #0a0a0a30;
   margin-right: 16px;
@@ -32,10 +32,15 @@ li {
 }
 
 li:hover {
-  background-color: #e6e6e6;
+  background-color: blueviolet;
   cursor: pointer;
 }
 
 a {
   text-decoration: none;
+  color: #e6e6e6;
+}
+
+li {
+  color: #e6e6e6;
 }
