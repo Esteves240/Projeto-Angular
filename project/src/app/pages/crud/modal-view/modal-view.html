@@ -32,14 +32,14 @@
       <p class="informacao">{{ albumData.genre }}</p>
     </div>
 
-    <!-- OUVIDO? -->
+    <!-- Vinyl? -->
     <div class="col-6">
-      <h4 class="titulo-informacao">Estado</h4>
+      <h4 class="titulo-informacao">Vinyl?</h4>
       <p class="informacao">
-        @if (albumData.isListened) {
-          <p class="informacao">Ouvido</p>
+        @if (albumData.hasVinyl) {
+          <p class="informacao">Possui Vinyl</p>
         } @else {
-          <p class="informacao">Não ouvido</p>
+          <p class="informacao">Não possui Vinyl</p>
         }
       </p>
     </div>
