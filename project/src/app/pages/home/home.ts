@@ -6,10 +6,11 @@ import { MatIcon } from '@angular/material/icon';
 import { Button } from '../../components/button/button';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { Footer } from '../../components/footer/footer';
 
 @Component({
   selector: 'app-home',
-  imports: [Menu, MatIcon, Button, RouterLink, DatePipe],
+  imports: [Menu, MatIcon, Button, RouterLink, DatePipe, Footer],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

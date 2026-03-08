@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalView } from './modal-view/modal-view';
 import { ModalForm } from './modal-form/modal-form';
 import { NgClass } from '@angular/common';
+import { Footer } from '../../components/footer/footer';
 
 @Component({
   selector: 'app-crud',
@@ -27,6 +28,7 @@ import { NgClass } from '@angular/common';
     MatTableModule,
     MatSortModule,
     NgClass,
+    Footer,
   ],
   templateUrl: './crud.html',
   styleUrl: './crud.css',
