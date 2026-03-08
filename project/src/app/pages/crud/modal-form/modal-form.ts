@@ -87,7 +87,7 @@ export class ModalForm {
       title: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       band: [null, [Validators.required]],
       genre: ['', [Validators.required]],
-      year: [null, [Validators.required]],
+      year: [null, [Validators.required, Validators.min(1947)]],
       isListened: [false],
       classification: [''],
       cover: [''],

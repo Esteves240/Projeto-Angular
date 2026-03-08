@@ -40,6 +40,9 @@
             <mat-option [value]="genre.name">{{ genre.name }}</mat-option>
           }
         </mat-select>
+        @if (formAlbum.get('genre')?.hasError('required')) {
+          <mat-error>O género é obrigatório</mat-error>
+        }
       </mat-form-field>
     </div>
 
@@ -48,8 +51,12 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Ano</mat-label>
         <input type="number" matInput formControlName="year" placeholder="Ex. 2020" />
-        @if (formAlbum.get('year')?.invalid && formAlbum.get('year')?.value < 1947) {
-          <mat-error>Introduza um ano válido</mat-error>
+        @if (formAlbum.get('year')?.hasError('required') && formAlbum.get('year')?.touched) {
+          <mat-error>O ano é obrigatório</mat-error>
+        }
+
+        @if (formAlbum.get('year')?.hasError('min') && formAlbum.get('year')?.touched) {
+          <mat-error>Não pode ser inferior a 1947</mat-error>
         }
       </mat-form-field>
     </div>

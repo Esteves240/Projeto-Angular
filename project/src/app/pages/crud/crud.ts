@@ -9,10 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { Album } from '../../interfaces/album.interface';
 import { Albums } from '../../core/services/album';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalView } from './modal-view/modal-view';
 import { ModalForm } from './modal-form/modal-form';
-import { response } from 'express';
+import { NgClass } from '@angular/common';
+import { Footer } from '../../components/footer/footer';
 
 @Component({
   selector: 'app-crud',
@@ -26,6 +27,8 @@ import { response } from 'express';
     MatIconModule,
     MatTableModule,
     MatSortModule,
+    NgClass,
+    Footer,
   ],
   templateUrl: './crud.html',
   styleUrl: './crud.css',

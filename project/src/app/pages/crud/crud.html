@@ -39,11 +39,14 @@
         <ng-container matColumnDef="isListened">
           <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
           <td class="td-table" mat-cell *matCellDef="let album">
-            @if (album.isListened) {
-              <mat-icon class="c-primary">check</mat-icon>
-            } @else {
-              <mat-icon class="c-error">remove</mat-icon>
-            }
+            <mat-icon
+              [ngClass]="{
+                'c-primary': album.isListened,
+                'c-error': !album.isListened,
+              }"
+            >
+              {{ album.isListened ? 'check' : 'remove' }}
+            </mat-icon>
           </td>
         </ng-container>
 
@@ -74,3 +77,5 @@
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>
