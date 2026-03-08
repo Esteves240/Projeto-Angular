@@ -35,17 +35,17 @@
           <td class="td-table" mat-cell *matCellDef="let album">{{ album.band }}</td>
         </ng-container>
 
-        <!-- isListened Column -->
-        <ng-container matColumnDef="isListened">
-          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+        <!-- hasVinyl Column -->
+        <ng-container matColumnDef="hasVinyl">
+          <th class="th-table" mat-header-cell *matHeaderCellDef mat-sort-header>Vinyl</th>
           <td class="td-table" mat-cell *matCellDef="let album">
             <mat-icon
               [ngClass]="{
-                'c-primary': album.isListened,
-                'c-error': !album.isListened,
+                'c-primary': album.hasVinyl,
+                'c-error': !album.hasVinyl,
               }"
             >
-              {{ album.isListened ? 'check' : 'remove' }}
+              {{ album.hasVinyl ? 'check' : 'remove' }}
             </mat-icon>
           </td>
         </ng-container>

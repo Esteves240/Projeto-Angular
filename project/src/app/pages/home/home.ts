@@ -67,7 +67,7 @@ export class Home implements OnInit {
     this.mostGenre = Object.keys(genres).reduce((a, b) => (genres[a] > genres[b] ? a : b), '');
 
     // KPI 4 - percentagem ouvidos
-    const listened = this.albums.filter((a) => a.isListened).length;
+    const listened = this.albums.filter((a) => a.hasVinyl).length;
 
     this.listenedPercent = this.totalAlbums ? Math.round((listened / this.totalAlbums) * 100) : 0;
 

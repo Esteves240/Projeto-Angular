@@ -34,7 +34,7 @@ import { Footer } from '../../components/footer/footer';
   styleUrl: './crud.css',
 })
 export class Crud implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'band', 'isListened', 'action'];
+  displayedColumns: string[] = ['id', 'title', 'band', 'hasVinyl', 'action'];
 
   dataSource = new MatTableDataSource<Album>([]);
 
