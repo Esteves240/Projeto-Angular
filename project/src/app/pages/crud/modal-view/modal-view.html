@@ -4,18 +4,35 @@
   <h1 class="titulo">Detalhes:</h1>
 
   <div class="row mt-3">
+    <!-- CAPA -->
+    <div class="col-6">
+      <h4 class="titulo-informacao">Capa</h4>
+      @if (albumData.cover) {
+        <img [src]="albumData.cover" alt="Capa do álbum" class="album-cover" />
+      } @else {
+        <p class="informacao">Sem capa..</p>
+      }
+    </div>
+
+    <!-- TITULO -->
     <div class="col-6">
       <h4 class="titulo-informacao">Título</h4>
       <p class="informacao">{{ albumData.title }}</p>
     </div>
+
+    <!-- BANDA -->
     <div class="col-6">
       <h4 class="titulo-informacao">Banda</h4>
       <p class="informacao">{{ albumData.band }}</p>
     </div>
+
+    <!-- GÉNERO -->
     <div class="col-6">
       <h4 class="titulo-informacao">Género</h4>
       <p class="informacao">{{ albumData.genre }}</p>
     </div>
+
+    <!-- OUVIDO? -->
     <div class="col-6">
       <h4 class="titulo-informacao">Estado</h4>
       <p class="informacao">
@@ -26,6 +43,33 @@
         }
       </p>
     </div>
-    <!-- botar o resto -->
+
+    <!-- ANO-->
+    <div class="col-6">
+      <h4 class="titulo-informacao">Ano</h4>
+      <p class="informacao">{{ albumData.year }}</p>
+    </div>
+
+    <!-- VALSSIFICAÇÃO -->
+    <div class="col-6">
+      <h4 class="titulo-informacao">Classificação</h4>
+      <p class="informacao">{{ albumData.classification }}</p>
+    </div>
+
+    <!-- DATA DE ADIÇÃO -->
+    <div class="col-6">
+      <h4 class="titulo-informacao">Data de Adição</h4>
+      <p class="informacao">{{ albumData.dateAdded | date: 'dd/MM/yyyy' }}</p>
+    </div>
+
+    <!-- NOTAS -->
+    <div class="col-6">
+      <h4 class="titulo-informacao">Notas</h4>
+      @if (albumData.notes) {
+        <p class="informacao">{{ albumData.notes }}</p>
+      } @else {
+        <p class="informacao">Sem notas..</p>
+      }
+    </div>
   </div>
 </div>
