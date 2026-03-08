@@ -49,7 +49,7 @@
         <mat-label>Ano</mat-label>
         <input type="number" matInput formControlName="year" placeholder="Ex. 2020" />
         @if (formAlbum.get('year')?.invalid && formAlbum.get('year')?.value < 1947) {
-          <mat-error>Por favor introduza um ano válido</mat-error>
+          <mat-error>Introduza um ano válido</mat-error>
         }
       </mat-form-field>
     </div>

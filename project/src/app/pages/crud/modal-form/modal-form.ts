@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MatDialogContent, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatFormField, MatLabel, MatError, MatHint } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,11 +18,9 @@ import { Album } from '../../../interfaces/album.interface';
     MatLabel,
     ReactiveFormsModule,
     MatError,
-    MatHint,
     MatSelect,
     MatOption,
     CommonModule,
-    MatDialogContent,
     MatInputModule,
   ],
   templateUrl: './modal-form.html',
@@ -30,23 +28,23 @@ import { Album } from '../../../interfaces/album.interface';
 })
 export class ModalForm {
   genero = [
-    { id: 1, name: 'rock' },
-    { id: 2, name: 'pop' },
-    { id: 3, name: 'hip-hop' },
-    { id: 4, name: 'jazz' },
-    { id: 5, name: 'classical' },
-    { id: 6, name: 'electronic' },
-    { id: 7, name: 'country' },
-    { id: 8, name: 'reggae' },
-    { id: 9, name: 'blues' },
-    { id: 10, name: 'folk' },
-    { id: 11, name: 'metal' },
-    { id: 12, name: 'punk' },
-    { id: 13, name: 'funk' },
-    { id: 14, name: 'soul' },
-    { id: 15, name: 'disco' },
-    { id: 16, name: 'indie' },
-    { id: 17, name: 'other' },
+    { id: 1, name: 'Rock' },
+    { id: 2, name: 'Pop' },
+    { id: 3, name: 'Hip-hop' },
+    { id: 4, name: 'Jazz' },
+    { id: 5, name: 'Clássica' },
+    { id: 6, name: 'Electronica' },
+    { id: 7, name: 'Country' },
+    { id: 8, name: 'Reggae' },
+    { id: 9, name: 'Blues' },
+    { id: 10, name: 'Folk' },
+    { id: 11, name: 'Metal' },
+    { id: 12, name: 'Punk' },
+    { id: 13, name: 'Funk' },
+    { id: 14, name: 'Soul' },
+    { id: 15, name: 'Disco' },
+    { id: 16, name: 'Indie' },
+    { id: 17, name: 'Outro' },
   ];
 
   formAlbum!: FormGroup;
