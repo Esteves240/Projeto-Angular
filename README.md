@@ -20,7 +20,7 @@ A página inicial apresenta indicadores (KPIs) calculados em tempo real:
 * **Total de álbuns**
 * **Média das classificações**
 * **Género mais presente na coleção**
-* **Percentagem de álbuns já ouvidos**
+* **Percentagem de vinys já possuidos**
 * **Número de álbuns adicionados na última semana**
 
 Também inclui um componente de destaque:
@@ -37,7 +37,7 @@ A aplicação permite gerir a coleção através de uma página de listagem:
 
 * Tabela com todos os álbuns registados
 * Ordenação de colunas
-* Indicador visual do estado **ouvido / não ouvido**
+* Indicador visual da posse em Vinyl **possui / não possui**
 * Botões de ação para:
 
   * Ver detalhes
@@ -57,7 +57,7 @@ Campos disponíveis:
 * Ano
 * URL da capa
 * Classificação
-* Estado (ouvido ou não)
+* Vinyl (possuo disco em vinyl ou não)
 * Notas
 
 ---
