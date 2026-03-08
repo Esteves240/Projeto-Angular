@@ -14,6 +14,8 @@ import { DatePipe } from '@angular/common';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
+  marchingBandUrl = 'marching-band.webp';
+
   albums: Album[] = [];
 
   totalAlbums = 0;
