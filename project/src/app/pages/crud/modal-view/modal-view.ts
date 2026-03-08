@@ -2,10 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { Album } from '../../../interfaces/album.interface';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-modal-view',
-  imports: [MatIcon],
+  imports: [MatIcon, DatePipe],
   templateUrl: './modal-view.html',
   styleUrl: './modal-view.css',
 })

@@ -7,27 +7,33 @@
   <h1 class="titulo" *ngIf="!editAlbum">Adicione um Álbum:</h1>
 
   <form class="row" [formGroup]="formAlbum">
-    <!-- Título -->
-    <div class="col-12 col-md-6 mb-2">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Título</mat-label>
-        <input matInput formControlName="title" placeholder="Ex: Dark Side of the Moon" />
-        @if (formAlbum.get('title')?.hasError('required') && formAlbum.get('title')?.touched) {
-          <mat-error>Título é obrigatório</mat-error>
-        }
-        @if (formAlbum.get('title')?.hasError('minlength')) {
-          <mat-error>Mínimo 2 caracteres</mat-error>
-        }
-      </mat-form-field>
-    </div>
+    <!-- TITULO -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" placeholder="Ex: Dark Side of the Moon" />
+      @if (formAlbum.get('title')?.hasError('required') && formAlbum.get('title')?.touched) {
+        <mat-error>Título é obrigatório</mat-error>
+      }
+      @if (formAlbum.get('title')?.hasError('minlength')) {
+        <mat-error>Mínimo 2 caracteres</mat-error>
+      }
+    </mat-form-field>
 
-    <div class="col-12 col-md-6 mb-2">
-      <label for="band" class="form-label">Banda</label>
-      <input type="text" class="form-control" id="band" formControlName="band" />
-    </div>
+    <!-- BANDA -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Banda</mat-label>
+      <input matInput formControlName="band" placeholder="Ex: Pink Floyd" />
+      @if (formAlbum.get('band')?.hasError('required') && formAlbum.get('band')?.touched) {
+        <mat-error>Banda é obrigatória</mat-error>
+      }
+      @if (formAlbum.get('band')?.hasError('minlength')) {
+        <mat-error>Mínimo 2 caracteres</mat-error>
+      }
+    </mat-form-field>
+
     <!-- GENERO -->
     <div class="col-12 col-md-6 mb-2">
-      <mat-form-field class="w-100">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Género</mat-label>
         <mat-select formControlName="genre">
           @for (genre of genero; track genre.id) {
@@ -37,15 +43,58 @@
       </mat-form-field>
     </div>
 
+    <!-- ANO-->
     <div class="col-12 col-md-6 mb-2">
-      <mat-form-field class="example-full-width w-100">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Ano</mat-label>
         <input type="number" matInput formControlName="year" placeholder="Ex. 2020" />
-        @if (formAlbum.get('year')?.invalid) {
-          <mat-error>Please enter a valid year</mat-error>
+        @if (formAlbum.get('year')?.invalid && formAlbum.get('year')?.value < 1947) {
+          <mat-error>Por favor introduza um ano válido</mat-error>
         }
       </mat-form-field>
     </div>
+
+    <!-- OUVIDO?-->
+    <div class="col-12 col-md-6 mb-2">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Já ouvi?</mat-label>
+        <mat-select formControlName="isListened">
+          <mat-option [value]="true">Sim</mat-option>
+          <mat-option [value]="false">Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- CLASSIFICAÇÂO-->
+    <div class="col-12 col-md-6 mb-2">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Classificação (1-5)</mat-label>
+        <mat-select formControlName="classification">
+          <mat-option [value]="null">Sem classificação</mat-option>
+          @for (n of [1, 2, 3, 4, 5]; track n) {
+            <mat-option [value]="n">{{ n }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- URL Capa -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>URL da Capa</mat-label>
+      <input matInput formControlName="cover" placeholder="https://..." />
+      <mat-icon matSuffix>image</mat-icon>
+    </mat-form-field>
+
+    <!-- Notas -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Notas (opcional)</mat-label>
+      <textarea
+        matInput
+        formControlName="notes"
+        rows="3"
+        placeholder="As tuas impressões..."
+      ></textarea>
+    </mat-form-field>
 
     <div class="col-12">
       <button class="botao-primario float-end" [disabled]="!formAlbum.valid" (click)="saveAlbum()">
