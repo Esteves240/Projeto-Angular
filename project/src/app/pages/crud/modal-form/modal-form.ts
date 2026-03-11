@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { MatFormField, MatLabel, MatError, MatHint } from '@angular/material/form-field';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelect, MatOption } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,12 @@ import { Album } from '../../../interfaces/album.interface';
   templateUrl: './modal-form.html',
   styleUrl: './modal-form.css',
 })
-export class ModalForm {
+export class ModalForm implements OnInit {
+  dialogRef = inject<MatDialogRef<ModalForm>>(MatDialogRef);
+  private formBuilder = inject(FormBuilder);
+  private albumsService = inject(Albums);
+  data = inject(MAT_DIALOG_DATA);
+
   genero = [
     { id: 1, name: 'Rock' },
     { id: 2, name: 'Pop' },
@@ -49,13 +54,6 @@ export class ModalForm {
 
   formAlbum!: FormGroup;
   editAlbum = false;
-
-  constructor(
-    public dialogRef: MatDialogRef<ModalForm>,
-    private formBuilder: FormBuilder,
-    private albumsService: Albums,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {}
 
   ngOnInit() {
     this.buildForm();
