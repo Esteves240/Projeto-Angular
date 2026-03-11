@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button.css',
 })
 export class Button {
-  @Input() textButtom: string = 'ADICIONAR';
+  @Input() textButtom = 'ADICIONAR';
 }

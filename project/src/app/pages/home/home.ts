@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Menu } from '../../components/menu/menu';
 import { Albums } from '../../core/services/album';
 import { Album } from '../../interfaces/album.interface';
@@ -15,6 +15,8 @@ import { Footer } from '../../components/footer/footer';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
+  private albumsService = inject(Albums);
+
   marchingBandUrl = 'marching-band.webp';
 
   albums: Album[] = [];
@@ -26,8 +28,6 @@ export class Home implements OnInit {
   albumsThisWeek = 0;
 
   lastAlbum!: Album | null;
-
-  constructor(private albumsService: Albums) {}
 
   ngOnInit() {
     this.loadKpis();
@@ -58,7 +58,7 @@ export class Home implements OnInit {
     this.avgRating = rated.length ? +(sum / rated.length).toFixed(1) : 0;
 
     // KPI 3 - género mais ouvido
-    const genres: any = {};
+    const genres: Record<string, number> = {};
 
     this.albums.forEach((a) => {
       genres[a.genre] = (genres[a.genre] || 0) + 1;
