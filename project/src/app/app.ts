@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { environment } from '../environments/environment.development';
 
 @Component({
   selector: 'app-root',
@@ -35,3 +36,13 @@ import { MatSelectModule } from '@angular/material/select';
 export class App {
   protected readonly title = signal('project');
 }
+
+async function loadUsers() {
+  if (typeof window === 'undefined') return;
+  const response = await fetch(environment.apiUrl + '/users');
+  const users = await response.json();
+
+  console.log(users);
+}
+
+loadUsers();
