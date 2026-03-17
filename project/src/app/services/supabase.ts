@@ -29,17 +29,19 @@ return [];
 return data as User[];
 }
 
-async adUsers(title: string): Promise<User | null> {
-const { data, error } = await this.supabase
-.from('users')
-.insert([{ title, completed: false }])
-.select()
-.single();
-if (error) {
-console.error('Erro ao criar utilizador:', error.message);
-return null;
-}
-return data as User;
+async addUser(name: string, password: number): Promise<User | null> {
+  const { data, error } = await this.supabase
+    .from('users')
+    .insert([{ name, password }])
+    .select()
+    .single();
+
+  if (error) {
+    console.error('Erro ao criar utilizador:', error.message);
+    return null;
+  }
+
+  return data as User;
 }
 
 
