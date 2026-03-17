@@ -5,15 +5,12 @@
 
   <input type="number" placeholder="Password" [(ngModel)]="password" />
 
-  <button (click)="register()">Registar</button>
+  <button (click)="register()">Criar Conta</button>
+  
   <button routerLink="/login" class="link-btn">Já tenho conta? Login</button>
 
   @if (error) {
-    <p class="error">Este utilizador já existe</p>
+    <p class="error">Utilizador já existente</p>
   }
 
-  @if (success) {
-    <p class="success">Utilizador criado com sucesso</p>
-  }
 </div>
-<app-footer />

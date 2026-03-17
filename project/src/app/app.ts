@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-//Angular Material
+// Angular Material
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,11 +12,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { environment } from '../environments/environment.development';
 
 @Component({
   selector: 'app-root',
-  // standalone: true,
   imports: [
     RouterOutlet,
     MatIconModule,
@@ -37,13 +35,3 @@ import { environment } from '../environments/environment.development';
 export class App {
   protected readonly title = signal('project');
 }
-
-async function loadUsers() {
-  if (typeof window === 'undefined') return;
-  const response = await fetch(environment.apiUrl + '/users');
-  const users = await response.json();
-
-  console.log(users);
-}
-
-loadUsers();
