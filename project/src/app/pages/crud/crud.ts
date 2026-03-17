@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, inject } from '@angular/core';
 import { Menu } from '../../components/menu/menu';
 import { Button } from '../../components/button/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,7 +33,10 @@ import { Footer } from '../../components/footer/footer';
   templateUrl: './crud.html',
   styleUrl: './crud.css',
 })
-export class Crud implements OnInit {
+export class Crud implements OnInit, AfterViewInit {
+  private albumsService = inject(Albums);
+  dialog = inject(MatDialog);
+
   displayedColumns: string[] = ['id', 'title', 'band', 'hasVinyl', 'action'];
 
   dataSource = new MatTableDataSource<Album>([]);
@@ -42,11 +45,6 @@ export class Crud implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(
-    private albumsService: Albums,
-    public dialog: MatDialog,
-  ) {}
 
   ngOnInit() {
     this.dataSource.data = this.albumsService.getAll();

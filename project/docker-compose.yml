@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: angular-app
+    ports:
+      - '${APP_PORT}:80'
+    restart: unless-stopped
+    depends_on:
+      - api
+    environment:
+      API_URL: ${API_URL}
+
+  api:
+    image: node:20-alpine
+    container_name: json-server-api
+    working_dir: /app
+    environment:
+      JSON_SERVER_WATCH: ${JSON_SERVER_WATCH}
+    command: >
+      sh -c "npm install -g json-server &&
+             json-server --host 0.0.0.0 --port 3000 db.json"
+    ports:
+      - '${API_PORT}:3000'
+    restart: unless-stopped
+    volumes:
+      - ./mock-api:/app
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://api:3000']
+      interval: 10s
+      timeout: 5s
+      retries: 5

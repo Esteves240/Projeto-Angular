@@ -1,0 +1,16 @@
+<div class="register-container">
+  <h2>Registo</h2>
+
+  <input type="text" placeholder="Username" [(ngModel)]="name" />
+
+  <input type="number" placeholder="Password" [(ngModel)]="password" />
+
+  <button (click)="register()">Criar Conta</button>
+  
+  <button routerLink="/login" class="link-btn">Já tenho conta? Login</button>
+
+  @if (error) {
+    <p class="error">Utilizador já existente</p>
+  }
+
+</div>
