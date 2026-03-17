@@ -1,0 +1,52 @@
+.success {
+  color: green;
+  font-weight: 600;
+}
+
+.register-container {
+  width: 300px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-weight: 600;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 10px;
+
+  color: #1976d2;
+  font-size: 14px;
+  cursor: pointer;
+
+  text-decoration: underline;
+}
+
+.link-btn:hover {
+  color: #125ca1;
+}
+
+.link-btn:active {
+  opacity: 0.8;
+}

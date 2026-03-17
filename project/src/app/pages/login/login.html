@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  <input type="text" placeholder="Username" [(ngModel)]="name" />
+
+  <input type="number" placeholder="Password" [(ngModel)]="password" />
+
+  <button (click)="login()">Entrar</button>
+
+  <button routerLink="/register" class="link-btn">+ Criar conta</button>
+
+  @if (error) {
+    <p class="error">Utilizador ou password incorretos</p>
+  }
+</div>
+
+<app-footer />

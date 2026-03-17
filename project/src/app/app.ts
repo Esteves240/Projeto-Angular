@@ -16,6 +16,7 @@ import { environment } from '../environments/environment.development';
 
 @Component({
   selector: 'app-root',
+  // standalone: true,
   imports: [
     RouterOutlet,
     MatIconModule,

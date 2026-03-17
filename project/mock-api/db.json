@@ -1,6 +1,28 @@
 {
   "users": [
-    { "id": 1, "name": "Pablo" },
-    { "id": 2, "name": "Juan" }
+    {
+      "id": 1,
+      "name": "Pablo",
+      "password": 1234
+    },
+    {
+      "id": 2,
+      "name": "Juan",
+      "password": 4321
+    },
+    {
+      "name": "Pablo",
+      "password": null,
+      "id": 3
+    },
+    {
+      "name": "",
+      "id": 4
+    },
+    {
+      "name": "Cassandra",
+      "password": 1111,
+      "id": 5
+    }
   ]
 }
