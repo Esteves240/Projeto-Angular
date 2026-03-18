@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Instalar dependências
-        run: npm ci
+        run: npm install
 
       - name: Generate environment.ts
         run: |
