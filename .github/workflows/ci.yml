@@ -2,35 +2,35 @@ name: CI
 
 on:
   pull_request:
-    branches: ["feature/ci"]
+    branches:
+      - feature/ci
   workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: ./project
 
 jobs:
   build-and-lint:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./project
-
     env:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Cache npm
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('project/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-
 
@@ -38,9 +38,10 @@ jobs:
         run: npm ci
 
       - name: Generate environment.ts
+        working-directory: ./project
         run: |
           mkdir -p src/environments
-          cat > src/environments/environment.development.ts <<EOF
+          cat > src/environments/environment.ts <<EOF
           export const environment = {
             production: false,
             supabaseUrl: '${{ env.SUPABASE_URL }}',
