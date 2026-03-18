@@ -35,5 +35,3 @@ export class Login {
     }
   }
 }
-
-let abc = 123;
