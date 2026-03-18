@@ -1,5 +1,7 @@
 # Projeto-Angular, Manuel Esteves
 
+[![CI](https://github.com/Esteves240/Projeto-Angular/actions/workflows/ci.yml/badge.svg)](https://github.com/Esteves240/Projeto-Angular/actions/workflows/ci.yml)
+
 
 
 ## Descrição do Projeto:
