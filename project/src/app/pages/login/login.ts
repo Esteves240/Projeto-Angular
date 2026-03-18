@@ -11,32 +11,27 @@ import { SupabaseService } from '../../services/supabase';
   imports: [FormsModule, Footer, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
-  
 })
-
-
 export class Login {
   // Router com inject()
   private router = inject(Router);
-   private supabase = inject(SupabaseService);
+  private supabase = inject(SupabaseService);
 
   name = '';
   password!: number;
 
   error = false;
 
- async login() {
-  const users = await this.supabase.getUsers();
+  async login() {
+    const users = await this.supabase.getUsers();
 
-  const foundUser = users.find(
-    (u) => u.name === this.name && u.password === this.password
-  );
+    const foundUser = users.find((u) => u.name === this.name && u.password === this.password);
 
-  if (foundUser) {
-    localStorage.setItem('user', JSON.stringify(foundUser));
-    this.router.navigate(['/home']);
-  } else {
-    this.error = true;
+    if (foundUser) {
+      localStorage.setItem('user', JSON.stringify(foundUser));
+      this.router.navigate(['/home']);
+    } else {
+      this.error = true;
+    }
   }
-}
 }
