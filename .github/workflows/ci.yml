@@ -31,7 +31,8 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Instalar dependências
-        run: npm install
+        run: npm ci
+        working-directory: ./project
 
       - name: Generate environment.ts
         run: |
@@ -46,6 +47,8 @@ jobs:
 
       - name: Executar lint
         run: npm run lint
+        working-directory: ./project
 
       - name: Executar build
         run: npm run build
+        working-directory: ./project
