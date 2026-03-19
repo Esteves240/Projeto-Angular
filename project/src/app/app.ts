@@ -35,5 +35,3 @@ import { MatSelectModule } from '@angular/material/select';
 export class App {
   protected readonly title = signal('project');
 }
-
-let abc = 123;
